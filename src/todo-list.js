@@ -8,9 +8,16 @@ class TodoList extends React.Component {
             this.props.items.map(item => React.createElement(
                 "li",
                 {key: item.id},
-                item.text
+                item.text,
+                React.createElement('button', {
+
+                    onClick: () => {
+                        this.props.deleteItem(item)
+                    }
+                }, 'trinti')
             ))
         );
+
     }
 }
 

@@ -17,7 +17,11 @@ class TodoApp extends React.Component {
                 null,
                 "TODO"
             ),
-            React.createElement(TodoList, {items: this.state.items}),
+            React.createElement(TodoList, {
+                items: this.state.items,
+                deleteItem: this.handleDelete.bind(this)
+            }),
+
             React.createElement(
                 "form",
                 {onSubmit: this.handleSubmit},
@@ -57,6 +61,16 @@ class TodoApp extends React.Component {
         this.setState(state => ({
             items: state.items.concat(newItem),
             text: ''
+        }));
+    }
+
+    handleDelete(item) {
+        var items = this.state.items;
+        var index = items.indexOf(item);
+        items.splice(index, 1);
+        this.state.items = items;
+        this.setState(state => ({
+            items: state.items
         }));
     }
 }
